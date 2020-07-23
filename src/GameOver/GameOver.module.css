@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+    bottom: 30%;
+    min-width: 200px;
+
+    background-color: lightskyblue;
+}
+
+.gameover {
+    font-size: xx-large;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.message {
+    font-size: x-large;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

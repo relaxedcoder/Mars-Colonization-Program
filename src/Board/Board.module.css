@@ -1,0 +1,22 @@
+.board {
+    width: 100%;
+    max-width: 400px;
+    background-color: black;
+    min-width: 300px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.cell {
+    display: flex;
+    flex: 1;
+    height: 100px;
+    background-color: white;
+    margin: 1px;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+}
