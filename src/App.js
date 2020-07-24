@@ -24,12 +24,17 @@ export default () => {
 
     /* Execute on Game Settings change */
     useEffect(() => {
+        if (numPlayers === 1) {
+            setP1Name('Human')
+            setP2Name('Computer')
+            restartGame()
+        }
         if (numPlayers === 2) {
             setP1Name('Player 1')
             setP2Name('Player 2')
+            restartGame()
         }
-        restartGame()
-    }, [numPlayers, p1Name, p2Name])
+    }, [numPlayers])
 
     /* Function to play a move */
     function playMove(position) {
@@ -46,18 +51,14 @@ export default () => {
 
     /* Execute on Board state change */
     useEffect(() => {
-        setWinner(isGameOver(board))
         let win = isGameOver(board)
         if (moves === 9 || win) {
             if (win) setWinner(win)
             else setWinner('No one')
         }
         else {
-            if (numPlayers === 1) {
-                if ((p1Name === 'Human' && !(moves % 2)) || (p2Name === 'Human' && moves % 2)) {
-                    setBestMove(generateBestMove(board, moves, false))
-                }
-                else playMove(generateBestMove(board, moves, true, difficulty))
+            if ((p1Name === 'Computer' && !(moves % 2)) || (p2Name === 'Computer' && moves % 2)) {
+                playMove(generateBestMove(board, moves, true, difficulty))
             }
             else setBestMove(generateBestMove(board, moves, false))
         }
@@ -121,17 +122,17 @@ export default () => {
                             <input
                                 type='checkbox'
                                 checked={suggestions}
-                                onChange={(event) => setSuggestions(event.target.value === 'on' ? true : false)}
+                                onChange={event => setSuggestions(event.target.checked)}
                             />
                         </div>
                     </div>
-                    <button onClick={restartGame}>Restart Game</button>
                 </div>
                 <div id='game'>
                     <Board
                         board={board}
                         playMove={playMove}
                     />
+                    <button onClick={restartGame}>Restart Game</button>
                 </div>
                 <div id='suggestions'>
                     {suggestions && <p
