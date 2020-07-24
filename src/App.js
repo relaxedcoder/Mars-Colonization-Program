@@ -6,7 +6,7 @@ import { isGameOver, generateBestMove } from './utils/gameFunctions'
 import Board from './Board/Board'
 import GameOver from './GameOver/GameOver'
 
-import Rover from './assets/rover.gif'
+import Rover from './assets/rover.mp4'
 
 export default () => {
     /* Game Settings */
@@ -85,7 +85,7 @@ export default () => {
             }
             <div id='header'>
                 <p style={{ fontSize: 'xxx-large', margin: '20px' }}>AI</p>
-                <img src={Rover} height='100px' alt='Mars Rover Gif' />
+                <video src={Rover} playsInline muted autoPlay loop height='100px' />
                 <p style={{ fontSize: 'xxx-large', margin: '20px' }}>Tic Tac Toe</p>
             </div>
             <div id='main'>
