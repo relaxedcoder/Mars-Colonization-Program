@@ -62,6 +62,7 @@ export default () => {
             }
             else setBestMove(generateBestMove(board, moves, false))
         }
+        // eslint-disable-next-line
     }, [board, moves, difficulty, numPlayers, p1Name, p2Name])
 
     /* Restart Game */
@@ -116,6 +117,24 @@ export default () => {
                                 max='9'
                                 value={difficulty}
                                 onChange={event => setDifficulty(event.target.value)} />
+                        </label>}
+                        {numPlayers === 2 && <label>
+                            <p>Player 1 Name</p>
+                            <input
+                                type='text'
+                                className='inputname'
+                                value={p1Name}
+                                onChange={event => setP1Name(event.target.value)}
+                            />
+                        </label>}
+                        {numPlayers === 2 && <label>
+                            <p>Player 2 Name</p>
+                            <input
+                                type='text'
+                                className='inputname'
+                                value={p2Name}
+                                onChange={event => setP2Name(event.target.value)}
+                            />
                         </label>}
                         <div>
                             <label>
