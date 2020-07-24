@@ -1,35 +1,65 @@
 * {
-    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans';
 }
 
-.main {
+p {
+    color: white;
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d4059;
+    flex-wrap: wrap;
+}
+
+#main {
     display: flex;
     flex-wrap: wrap-reverse;
-    flex-direction: row;
-    bottom: auto;
-    padding-left: 20%;
-    padding-right: 20%; 
+    background-image: url(./assets/background.jpg);
+    background-size: cover;
+    min-height: 80vh;
 }
 
-.settings {
+#settings {
+    display: flex;
     flex: 1;
-    display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#game {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#suggestions {
+    display: flex;
+    flex: 1;
+    justify-content: center;
     min-width: 200px;
 }
 
-.game {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    min-width: 200px;
-}
-
-.button {
-    margin: 5px;
+button {
+    padding: 10px;
     border-width: 0;
     width: 100px;
+    color: white;
+    background-color: #2d4059;
+    border-radius: 10px;
+    border-color: white;
+    border-width: 1px;
+    min-width: 120px;
 }

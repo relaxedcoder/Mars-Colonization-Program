@@ -1,7 +1,11 @@
+div {
+    color: #2d4059;
+}
+
 .board {
     width: 100%;
     max-width: 400px;
-    background-color: black;
+    background-color: #2d4059;
     min-width: 300px;
 }
 
@@ -14,8 +18,8 @@
     display: flex;
     flex: 1;
     height: 100px;
-    background-color: white;
-    margin: 1px;
+    background-color: #ffd460;
+    margin: 2px;
     align-items: center;
     justify-content: center;
     font-size: xx-large;

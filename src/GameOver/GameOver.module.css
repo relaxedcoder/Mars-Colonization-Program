@@ -5,13 +5,17 @@
     justify-content: center;
 
     position: fixed;
-    left: 30%;
-    right: 30%;
+    left: 35%;
+    right: 35%;
     top: 30%;
     bottom: 30%;
     min-width: 200px;
 
-    background-color: lightskyblue;
+    background-image: url('../assets/win.gif');
+
+    border-style: solid;
+    border-radius: 20px;
+    border-color: #2d4059;
 }
 
 .gameover {
