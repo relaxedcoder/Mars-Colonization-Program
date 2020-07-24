@@ -62,4 +62,11 @@ button {
     border-color: white;
     border-width: 1px;
     min-width: 120px;
+    outline: none;
+    margin-top: 20px;
+}
+
+button:active {
+    background-color: #ffd460;
+    color: #2d4059;
 }
