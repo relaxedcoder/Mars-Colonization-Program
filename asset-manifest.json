@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Mars-Colonization-Program/static/css/main.a27b3e36.chunk.css",
+    "main.js": "/Mars-Colonization-Program/static/js/main.212104a2.chunk.js",
+    "main.js.map": "/Mars-Colonization-Program/static/js/main.212104a2.chunk.js.map",
+    "runtime-main.js": "/Mars-Colonization-Program/static/js/runtime-main.91621262.js",
+    "runtime-main.js.map": "/Mars-Colonization-Program/static/js/runtime-main.91621262.js.map",
+    "static/js/2.c77c178b.chunk.js": "/Mars-Colonization-Program/static/js/2.c77c178b.chunk.js",
+    "static/js/2.c77c178b.chunk.js.map": "/Mars-Colonization-Program/static/js/2.c77c178b.chunk.js.map",
+    "index.html": "/Mars-Colonization-Program/index.html",
+    "precache-manifest.c9eea7821d4b2c472454df1766fc5b8c.js": "/Mars-Colonization-Program/precache-manifest.c9eea7821d4b2c472454df1766fc5b8c.js",
+    "service-worker.js": "/Mars-Colonization-Program/service-worker.js",
+    "static/css/main.a27b3e36.chunk.css.map": "/Mars-Colonization-Program/static/css/main.a27b3e36.chunk.css.map",
+    "static/js/2.c77c178b.chunk.js.LICENSE.txt": "/Mars-Colonization-Program/static/js/2.c77c178b.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Mars-Colonization-Program/static/media/background.0c0d05c1.jpg",
+    "static/media/rover.gif": "/Mars-Colonization-Program/static/media/rover.4ef73b8a.gif",
+    "static/media/GameOver.module.css": "/Mars-Colonization-Program/static/media/win.a1f2f66b.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91621262.js",
+    "static/js/2.c77c178b.chunk.js",
+    "static/css/main.a27b3e36.chunk.css",
+    "static/js/main.212104a2.chunk.js"
+  ]
+}
