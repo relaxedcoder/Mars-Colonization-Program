@@ -108,7 +108,7 @@ export default () => {
                                 setP2Name('Human')
                             }}>Computer</button>
                         </div>}
-                        {numPlayers === 1 && <div>
+                        {numPlayers === 1 && <label>
                             <p>Difficulty: {difficulty < 9 ? difficulty : 'Infinity'}</p>
                             <input
                                 type='range'
@@ -116,14 +116,16 @@ export default () => {
                                 max='9'
                                 value={difficulty}
                                 onChange={event => setDifficulty(event.target.value)} />
-                        </div>}
+                        </label>}
                         <div>
-                            <p>Display suggestions?</p>
-                            <input
-                                type='checkbox'
-                                checked={suggestions}
-                                onChange={event => setSuggestions(event.target.checked)}
-                            />
+                            <label>
+                                <p>Display suggestions?</p>
+                                <input
+                                    type='checkbox'
+                                    checked={suggestions}
+                                    onChange={event => setSuggestions(event.target.checked)}
+                                />
+                            </label>
                         </div>
                     </div>
                 </div>
