@@ -6,144 +6,144 @@ import { isGameOver, generateBestMove } from './utils/gameFunctions'
 import Board from './Board/Board'
 import GameOver from './GameOver/GameOver'
 
+import Rover from './assets/rover.gif'
+
 export default () => {
     /* Game Settings */
     const [numPlayers, setNumPlayers] = useState(1)
-    const [player1Name, setPlayer1Name] = useState('')
-    const [player2Name, setPlayer2Name] = useState('')
+    const [p1Name, setP1Name] = useState('Human')
+    const [p2Name, setP2Name] = useState('Computer')
     const [difficulty, setDifficulty] = useState(4)
+    const [suggestions, setSuggestions] = useState(false)
 
     /* Game State */
     const [board, setBoard] = useState(['', '', '', '', '', '', '', '', ''])
-    const [move, setMove] = useState(true)
     const [moves, setMoves] = useState(0)
-    const [isFinished, setIsFinished] = useState(false)
+    const [bestMove, setBestMove] = useState(0)
     const [winner, setWinner] = useState('')
 
-    /* Function to play a Move on the Board */
-    const playMove = (position) => {
-        if (!isFinished && !board[position]) {
-            board[position] = 'X'
+    /* Execute on Game Settings change */
+    useEffect(() => {
+        if (numPlayers === 2) {
+            setP1Name('Player 1')
+            setP2Name('Player 2')
+        }
+        restartGame()
+    }, [numPlayers, p1Name, p2Name])
+
+    /* Function to play a move */
+    function playMove(position) {
+        if (!winner && moves < 9 && !board[position]) {
+            let move = (moves % 2) ? 'O' : 'X'
+            board[position] = move
             setBoard(board.map((value, index) => {
-                if (index === position) return (move ? 'X' : 'O')
+                if (index === position) return move
                 else return value
             }))
             setMoves(moves + 1)
-            setMove(!move)
         }
-    }
-
-    /* Function to reset game */
-    function restartGame() {
-        setBoard(['', '', '', '', '', '', '', '', ''])
-        if (numPlayers === 1 && player1Name === 'Computer') setMove(false)
-        setIsFinished(false)
-        setMoves(0)
-        setWinner('')
     }
 
     /* Execute on Board state change */
     useEffect(() => {
-        let finished = isGameOver(board)
-        if (moves === 9 || finished) {
-            setIsFinished(true)
-            setWinner(finished)
+        setWinner(isGameOver(board))
+        let win = isGameOver(board)
+        if (moves === 9 || win) {
+            if (win) setWinner(win)
+            else setWinner('No one')
         }
         else {
-            let player = move ? 'X' : 'O'
-            let bestMove = generateBestMove(board, moves, player, difficulty)
-            if (numPlayers === 1 && !move) playMove(bestMove)
+            if (numPlayers === 1) {
+                if ((p1Name === 'Human' && !(moves % 2)) || (p2Name === 'Human' && moves % 2)) {
+                    setBestMove(generateBestMove(board, moves, false))
+                }
+                else playMove(generateBestMove(board, moves, true, difficulty))
+            }
+            else setBestMove(generateBestMove(board, moves, false))
         }
-    }, [board, moves, move, difficulty, numPlayers])
+    }, [board, moves, difficulty, numPlayers, p1Name, p2Name])
 
-    /* Execute on game finish */
-    useEffect(() => {
-        if (winner === 'X') setWinner(player1Name)
-        else if (winner === 'O') setWinner(player2Name)
-        else if (moves === 9) setWinner('No one')
-    }, [isFinished, winner, moves, player1Name, player2Name])
+    /* Restart Game */
+    function restartGame() {
+        setBoard(['', '', '', '', '', '', '', '', ''])
+        setMoves(0)
+        setWinner('')
+    }
 
-    /* Change name of players */
+    /* Display winner name */
     useEffect(() => {
-        if (numPlayers === 1) {
-            setPlayer1Name('Human')
-            setPlayer2Name('Computer')
-        }
-        else {
-            setPlayer1Name('Player 1')
-            setPlayer2Name('Player 2')
-        }
-    }, [numPlayers])
-
-    /* Execute on change of number of players */
-    useEffect(() => {
-        restartGame()
-    }, [numPlayers])
-
-    /* Execute if first player changes */
-    useEffect(() => {
-        if (player1Name === 'Computer') setMove(false)
-    }, [player1Name, player2Name])
+        if (winner === 'X') setWinner(p1Name)
+        else if (winner === 'O') setWinner(p2Name)
+    }, [winner, p1Name, p2Name])
 
     return (
-        <div>
+        <div id='container'>
             {winner && <GameOver
                 winner={winner}
                 restartGame={restartGame} />
             }
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <p style={{ fontSize: 'xxx-large' }}>Tic Tac Toe</p>
+            <div id='header'>
+                <p style={{ fontSize: 'xxx-large', margin: '20px' }}>AI</p>
+                <img src={Rover} height='100px' alt='Mars Rover Gif' />
+                <p style={{ fontSize: 'xxx-large', margin: '20px' }}>Tic Tac Toe</p>
             </div>
-            <div className='main'>
-                <div className='settings'>
+            <div id='main'>
+                <div id='settings'>
+                    <p style={{ fontSize: 'xx-large' }}>Settings</p>
                     <div>
-                        <p style={{ fontSize: 'x-large' }}>Settings</p>
                         <div>
-                            <p>Number of Players: {`${numPlayers} Player`}</p>
+                            <p>Number of Players: {numPlayers} Player</p>
                             <button onClick={() => setNumPlayers(1)}>1 Player</button>
                             <button onClick={() => setNumPlayers(2)}>2 Player</button>
                         </div>
-                        {numPlayers === 1 &&
-                            <div>
-                                <p>First move: {player1Name}</p>
-                                <button onClick={() => {
-                                    setPlayer1Name('Human')
-                                    setPlayer2Name('Computer')
-                                    restartGame()
-                                }}>Human</button>
-                                <button onClick={() => {
-                                    setPlayer1Name('Computer')
-                                    setPlayer2Name('Human')
-                                    restartGame()
-                                }}>Computer</button>
-                            </div>
-                        }
-                        {numPlayers === 1 &&
-                            <div>
-                                <p>Difficulty: {difficulty < 9 ? difficulty : 'Infinity'}</p>
-                                <input
-                                    type='range'
-                                    min='1'
-                                    max='9'
-                                    value={difficulty}
-                                    onChange={event => setDifficulty(event.target.value)} />
-                            </div>
-                        }
+                        {numPlayers === 1 && <div>
+                            <p>First move: {p1Name}</p>
+                            <button onClick={() => {
+                                setP1Name('Human')
+                                setP2Name('Computer')
+                            }}>Human</button>
+                            <button onClick={() => {
+                                setP1Name('Computer')
+                                setP2Name('Human')
+                            }}>Computer</button>
+                        </div>}
+                        {numPlayers === 1 && <div>
+                            <p>Difficulty: {difficulty < 9 ? difficulty : 'Infinity'}</p>
+                            <input
+                                type='range'
+                                min='1'
+                                max='9'
+                                value={difficulty}
+                                onChange={event => setDifficulty(event.target.value)} />
+                        </div>}
                         <div>
                             <p>Display suggestions?</p>
-                            <input type='checkbox' />
+                            <input
+                                type='checkbox'
+                                checked={suggestions}
+                                onChange={(event) => setSuggestions(event.target.value === 'on' ? true : false)}
+                            />
                         </div>
-                        <button onClick={restartGame}>Restart Game</button>
                     </div>
+                    <button onClick={restartGame}>Restart Game</button>
                 </div>
-                <div className='game'>
+                <div id='game'>
                     <Board
                         board={board}
                         playMove={playMove}
                     />
                 </div>
+                <div id='suggestions'>
+                    {suggestions && <p
+                        style={{ fontSize: 'x-large' }}
+                        onClick={() => setSuggestions(false)}
+                    >Best move: {bestMove}</p>}
+                    {!suggestions && <p
+                        style={{ fontSize: 'x-large' }}
+                        onClick={() => setSuggestions(true)}
+                    >Click to Display Suggestions</p>}
+                </div>
             </div>
-
-        </div>
+        </div >
     )
 }

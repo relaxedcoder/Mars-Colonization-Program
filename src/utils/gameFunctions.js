@@ -19,8 +19,7 @@ export const isGameOver = (board) => {
 
 /* Minimax algorithm for determining best move */
 const minimax = (board, depth, isMax, numMoves, player, difficulty) => {
-    if(depth > difficulty) return 0
-
+    if (depth > difficulty) return 0
     var score = isGameOver(board)
     if (score === player) return 10
     else if (score) return -10
@@ -32,7 +31,7 @@ const minimax = (board, depth, isMax, numMoves, player, difficulty) => {
         let best = -1000
         for (i = 0; i < 9; i++) {
             if (!board[i]) {
-                board[i] = player
+                board[i] = (numMoves % 2) ? 'O' : 'X'
                 best = Math.max(best, minimax(board, depth + 1, !isMax, numMoves + 1, player, difficulty))
                 board[i] = ''
             }
@@ -43,7 +42,7 @@ const minimax = (board, depth, isMax, numMoves, player, difficulty) => {
         let best = 1000;
         for (i = 0; i < 9; i++) {
             if (!board[i]) {
-                board[i] = player === 'X' ? 'O' : 'X'
+                board[i] = (numMoves % 2) ? 'O' : 'X'
                 best = Math.min(best, minimax(board, depth + 1, !isMax, numMoves + 1, player, difficulty))
                 board[i] = ''
             }
@@ -53,13 +52,16 @@ const minimax = (board, depth, isMax, numMoves, player, difficulty) => {
 }
 
 /* Function that tries all possible moves and determines best one */
-export const generateBestMove = (board, numMoves, player, difficulty) => {
+export const generateBestMove = (board, numMoves, isComputer, difficulty) => {
     var bestVal = -1000
     var bestMove
     for (var i = 0; i < 9; i++) {
         if (!board[i]) {
+            let player = (numMoves % 2) ? 'O' : 'X'
             board[i] = player
-            var moveVal = minimax(board, 0, false, numMoves + 1, player, difficulty)
+            var moveVal
+            if (isComputer) moveVal = minimax(board, 0, false, numMoves + 1, player, difficulty)
+            else moveVal = minimax(board, 0, false, numMoves + 1, player, 9)
             board[i] = ''
             if (moveVal > bestVal) {
                 bestMove = i
