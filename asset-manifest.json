@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Mars-Colonization-Program/static/css/main.2d0ed041.chunk.css",
-    "main.js": "/Mars-Colonization-Program/static/js/main.0dd5c313.chunk.js",
-    "main.js.map": "/Mars-Colonization-Program/static/js/main.0dd5c313.chunk.js.map",
+    "main.css": "/Mars-Colonization-Program/static/css/main.ebeb2340.chunk.css",
+    "main.js": "/Mars-Colonization-Program/static/js/main.d988f7f6.chunk.js",
+    "main.js.map": "/Mars-Colonization-Program/static/js/main.d988f7f6.chunk.js.map",
     "runtime-main.js": "/Mars-Colonization-Program/static/js/runtime-main.91621262.js",
     "runtime-main.js.map": "/Mars-Colonization-Program/static/js/runtime-main.91621262.js.map",
     "static/js/2.c77c178b.chunk.js": "/Mars-Colonization-Program/static/js/2.c77c178b.chunk.js",
     "static/js/2.c77c178b.chunk.js.map": "/Mars-Colonization-Program/static/js/2.c77c178b.chunk.js.map",
     "index.html": "/Mars-Colonization-Program/index.html",
-    "precache-manifest.7e2da6a387f28ce6b2dca9cb5fc427bd.js": "/Mars-Colonization-Program/precache-manifest.7e2da6a387f28ce6b2dca9cb5fc427bd.js",
+    "precache-manifest.2d44b3fecb59f13e313e696f3a826a6c.js": "/Mars-Colonization-Program/precache-manifest.2d44b3fecb59f13e313e696f3a826a6c.js",
     "service-worker.js": "/Mars-Colonization-Program/service-worker.js",
-    "static/css/main.2d0ed041.chunk.css.map": "/Mars-Colonization-Program/static/css/main.2d0ed041.chunk.css.map",
+    "static/css/main.ebeb2340.chunk.css.map": "/Mars-Colonization-Program/static/css/main.ebeb2340.chunk.css.map",
     "static/js/2.c77c178b.chunk.js.LICENSE.txt": "/Mars-Colonization-Program/static/js/2.c77c178b.chunk.js.LICENSE.txt",
     "static/media/App.css": "/Mars-Colonization-Program/static/media/background.0c0d05c1.jpg",
     "static/media/rover.mp4": "/Mars-Colonization-Program/static/media/rover.11305738.mp4",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.91621262.js",
     "static/js/2.c77c178b.chunk.js",
-    "static/css/main.2d0ed041.chunk.css",
-    "static/js/main.0dd5c313.chunk.js"
+    "static/css/main.ebeb2340.chunk.css",
+    "static/js/main.d988f7f6.chunk.js"
   ]
 }
