@@ -19,7 +19,7 @@ export default () => {
     /* Game State */
     const [board, setBoard] = useState(['', '', '', '', '', '', '', '', ''])
     const [moves, setMoves] = useState(0)
-    const [bestMove, setBestMove] = useState(0)
+    const [bestMove, setBestMove] = useState(-1)
     const [winner, setWinner] = useState('')
 
     /* Execute on Game Settings change */
@@ -70,6 +70,7 @@ export default () => {
         setBoard(['', '', '', '', '', '', '', '', ''])
         setMoves(0)
         setWinner('')
+        setBestMove(-1)
     }
 
     /* Display winner name */
@@ -152,6 +153,8 @@ export default () => {
                     <Board
                         board={board}
                         playMove={playMove}
+                        suggestions={suggestions}
+                        bestMove={bestMove}
                     />
                     <button onClick={restartGame}>Restart Game</button>
                 </div>
@@ -159,7 +162,7 @@ export default () => {
                     {suggestions && <p
                         style={{ fontSize: 'x-large' }}
                         onClick={() => setSuggestions(false)}
-                    >Best move: {bestMove}</p>}
+                    >Best move: {Math.floor(bestMove / 3) + 1} row, {bestMove % 3 + 1} column</p>}
                     {!suggestions && <p
                         style={{ fontSize: 'x-large' }}
                         onClick={() => setSuggestions(true)}
